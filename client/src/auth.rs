@@ -8,9 +8,11 @@ use serde::Deserialize;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 // Add browser cookie support
+#[cfg(feature = "browser-cookies")]
 use crate::browser_cookies;
 
 /// Get Bilibili cookies from browser (preferred, newest), then fallback to provided cookie string
+#[cfg(feature = "browser-cookies")]
 pub fn get_cookies_or_browser(provided_cookie: Option<&str>) -> Option<String> {
     // First try browser cookies as they are the newest
     log::info!("Searching for Bilibili cookies in browser (newest)...");

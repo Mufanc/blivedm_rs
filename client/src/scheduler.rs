@@ -15,6 +15,7 @@ pub struct EventContext {
 
 impl EventContext {
     /// Create a new EventContext with automatic cookie detection
+    #[cfg(feature = "browser-cookies")]
     pub fn new_with_auto_cookies(room_id: u64) -> Self {
         let cookies = crate::auth::get_cookies_or_browser(None);
         Self { cookies, room_id }

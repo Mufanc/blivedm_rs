@@ -34,6 +34,7 @@ impl BiliLiveClient {
 
     /// Create a new client with automatic browser cookie detection
     /// If cookies is None or empty, it will try to find cookies from browser
+    #[cfg(feature = "browser-cookies")]
     pub fn new_auto(
         cookies: Option<&str>,
         room_id: &str,
@@ -331,6 +332,7 @@ pub fn handle(json: Value) -> Option<BiliMessage> {
 }
 
 /// Enhanced init_server that can automatically detect cookies from browser
+#[cfg(feature = "browser-cookies")]
 pub fn init_server_auto(
     provided_cookies: Option<&str>,
     room_id: &str,
