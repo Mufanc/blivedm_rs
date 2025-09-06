@@ -64,6 +64,9 @@ rust-project.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 
+### RustRover ###
+.idea
+
 # Local History for Visual Studio Code
 .history/
 
