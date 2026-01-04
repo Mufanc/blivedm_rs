@@ -28,6 +28,7 @@ impl EventHandler for TerminalDisplayHandler {
             BiliMessage::Unsupported => {
                 "[Unsupported message type]".to_string()
             }
+            _ => return
         };
 
         // Add message to buffer using the TuiApp helper method
