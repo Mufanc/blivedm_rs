@@ -307,25 +307,7 @@ pub fn decompress(body: &[u8]) -> std::io::Result<Vec<u8>> {
 /// here we detail [info format is online](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/docs/live/message_stream.md)
 /// .
 pub fn handle(json: Value) -> Option<BiliMessage> {
-    let category = json["cmd"].as_str().unwrap_or("");
-    match category {
-        "DANMU_MSG" => Some(BiliMessage::Danmu {
-            user: json["info"][2][1]
-                .as_str()
-                .unwrap_or("<unknown>")
-                .to_string(),
-            text: json["info"][1].as_str().unwrap_or("").to_string(),
-        }),
-        "SEND_GIFT" => Some(BiliMessage::Gift {
-            user: json["info"][2][1]
-                .as_str()
-                .unwrap_or("<unknown>")
-                .to_string(),
-            gift: json["info"][1].as_str().unwrap_or("").to_string(),
-        }),
-        // Add more cases for other types as needed
-        _ => Some(BiliMessage::Unsupported),
-    }
+    Some(BiliMessage::Raw { data: json })
 }
 
 /// Enhanced init_server that can automatically detect cookies from browser

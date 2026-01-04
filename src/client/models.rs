@@ -3,6 +3,7 @@
 
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use serde_json::Value;
 
 #[derive(Debug)]
 pub struct DanmuServer {
@@ -57,6 +58,7 @@ impl AuthMessage {
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum BiliMessage {
+    Raw { data: Value },
     Danmu { user: String, text: String },
     Gift { user: String, gift: String },
     // Add more variants as needed
